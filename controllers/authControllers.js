@@ -1,11 +1,13 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { sendWelcomeEmail } = require('../controllers/mailControllers')
 
 exports.signup = async (req, res) => {
   const { email, password, role } = req.body;
   try {
     const user = new User({ email, password, role });
     await user.save();
+    sendWelcomeEmail(user.email);
     res.status(201).json({ message: 'User created' });
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+
 const connectDB = require('./config/db');
 const errorHandler = require('./middlewares/errorHandlers');
 
@@ -15,6 +19,9 @@ connectDB();
 
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', productRoutes);
+app.use('/api', paymentRoutes);
+app.use('/api', cartRoutes);
 
 app.use(errorHandler);
 
